@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="azul">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0f1a" />
+    <title>Portfólio · Técnica em Informática</title>
+    <meta
+      name="description"
+      content="Portfólio responsivo de técnica em informática: sobre, habilidades, projetos e certificados."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topbar" aria-label="Barra superior">
+      <div class="wrap topbar__inner">
+        <a class="brand" href="#home" aria-label="Ir para o início">
+          <span class="brand__logo" aria-hidden="true"></span>
+          <span class="brand__text">
+            <span class="brand__title">Seu Nome</span>
+            <span class="brand__sub">Técnica em Informática · Dev Front/Back</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <button
+            class="nav__toggle"
+            type="button"
+            id="navToggle"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            Menu
+          </button>
+          <div class="nav__links" id="navLinks">
+            <a class="nav__link" href="#sobre">Sobre</a>
+            <a class="nav__link" href="#habilidades">Habilidades</a>
+            <a class="nav__link" href="#projetos">Projetos</a>
+            <a class="nav__link" href="#certificados">Certificados</a>
+            <a class="nav__link" href="#contato">Contato</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero" id="home" aria-label="Apresentação">
+        <div class="wrap hero__grid">
+          <div class="hero__copy">
+            <div class="kicker">
+              <span class="pill">Ensino Médio Técnico (3º ano)</span>
+              <span class="pill pill--soft">Iniciando carreira em TI</span>
+            </div>
+            <h1 class="hero__title">
+              Construo soluções claras, eficientes e com foco em impacto.
+            </h1>
+            <p class="hero__lead">
+              Interesse em desenvolvimento de software, inteligência artificial e banco de dados — sempre buscando entender o
+              “porquê” por trás das soluções.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#projetos">Ver projetos</a>
+              <a class="btn btn--ghost" href="#contato">Falar comigo</a>
+            </div>
+
+            <div class="theme" aria-label="Opções de cores">
+              <div class="theme__label">Cores</div>
+              <div class="theme__swatches" role="list">
+                <button class="swatch" type="button" data-theme="azul" aria-label="Tema azul"></button>
+                <button class="swatch" type="button" data-theme="roxo" aria-label="Tema roxo"></button>
+                <button class="swatch" type="button" data-theme="lilas" aria-label="Tema lilás"></button>
+                <button class="swatch" type="button" data-theme="preto" aria-label="Tema preto"></button>
+                <button class="swatch" type="button" data-theme="vermelho" aria-label="Tema vermelho"></button>
+                <button class="swatch" type="button" data-theme="esmeralda" aria-label="Tema verde esmeralda"></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero__card" aria-label="Resumo rápido">
+            <div class="idcard">
+              <div class="avatar" aria-hidden="true">
+                <span class="avatar__ring"></span>
+                <span class="avatar__initials">SN</span>
+              </div>
+              <div class="idcard__meta">
+                <div class="idcard__name">Seu Nome</div>
+                <div class="idcard__role">Técnica em Informática</div>
+              </div>
+            </div>
+
+            <dl class="facts" aria-label="Destaques">
+              <div class="facts__item">
+                <dt>Atuação</dt>
+                <dd>Front-end e Back-end</dd>
+              </div>
+              <div class="facts__item">
+                <dt>Foco</dt>
+                <dd>Software · IA · Dados</dd>
+              </div>
+              <div class="facts__item">
+                <dt>Ferramentas</dt>
+                <dd>Git · SQL · LLM · Office</dd>
+              </div>
+            </dl>
+
+            <div class="quick">
+              <a class="btn btn--small btn--primary" href="#certificados">Ver certificados</a>
+              <button
+                class="btn btn--small btn--ghost"
+                type="button"
+                id="copyEmail"
+                data-email="seuemail@exemplo.com"
+              >
+                Copiar e-mail
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="sobre" aria-label="Sobre mim">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">Sobre</h2>
+            <p class="section__subtitle">Quem eu sou e como penso.</p>
+          </header>
+
+          <div class="card">
+            <div class="prose">
+              <p>
+                Sou estudante do 3º ano do Ensino Médio Técnico em Informática, apaixonada por tecnologia e pelo impacto que ela
+                pode gerar na vida das pessoas. Tenho grande interesse em desenvolvimento de software, inteligência artificial e
+                banco de dados, buscando constantemente evoluir minhas habilidades técnicas e analíticas.
+              </p>
+              <p>
+                Ao longo da minha formação, venho desenvolvendo projetos práticos que envolvem lógica de programação, modelagem
+                de dados e construção de aplicações, sempre com foco em organização, clareza e eficiência. Tenho facilidade em
+                aprender novas tecnologias e gosto de entender não apenas o “como”, mas principalmente o “porquê” das soluções.
+              </p>
+              <p>
+                Meu objetivo é ingressar na área de Tecnologia da Informação e contribuir com soluções inovadoras, enquanto
+                continuo evoluindo profissionalmente e academicamente na área de computação.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">Resumo técnico</h3>
+            <ul class="chips" aria-label="Linguagens e conhecimentos">
+              <li class="chip">Java</li>
+              <li class="chip">JavaScript</li>
+              <li class="chip">Python</li>
+              <li class="chip">HTML</li>
+              <li class="chip">CSS</li>
+              <li class="chip">SQL</li>
+              <li class="chip">Git</li>
+              <li class="chip">Pacote Office</li>
+              <li class="chip">LLM</li>
+            </ul>
+            <div class="note">
+              <span class="note__dot" aria-hidden="true"></span>
+              <span>Atuo tanto na área de front como back end.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="habilidades" aria-label="Habilidades">
+        <div class="wrap">
+          <header class="section__head section__head--inline">
+            <div>
+              <h2 class="section__title">Habilidades</h2>
+              <p class="section__subtitle">O que eu uso para entregar valor.</p>
+            </div>
+          </header>
+
+          <div class="grid3">
+            <article class="card">
+              <h3 class="card__title">Desenvolvimento</h3>
+              <ul class="list">
+                <li class="list__item">Estruturas de dados e lógica de programação</li>
+                <li class="list__item">Criação de APIs e integração front/back</li>
+                <li class="list__item">Interfaces responsivas e acessíveis</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Dados</h3>
+              <ul class="list">
+                <li class="list__item">Modelagem relacional e consultas SQL</li>
+                <li class="list__item">Organização e consistência de dados</li>
+                <li class="list__item">Boas práticas de versionamento</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">IA & produtividade</h3>
+              <ul class="list">
+                <li class="list__item">Uso de LLMs para estudo e prototipação</li>
+                <li class="list__item">Automação de tarefas e documentação</li>
+                <li class="list__item">Comunicação clara e foco em resultado</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projetos" aria-label="Projetos">
+        <div class="wrap">
+          <header class="section__head section__head--inline">
+            <div>
+              <h2 class="section__title">Projetos</h2>
+              <p class="section__subtitle">Seleção para demonstrar prática e evolução.</p>
+            </div>
+            <div class="section__actions">
+              <a class="btn btn--ghost" href="#contato">Quero ver mais</a>
+            </div>
+          </header>
+
+          <div class="grid2">
+            <article class="card project">
+              <div class="project__top">
+                <h3 class="card__title">Projeto 01 · Sistema de cadastro</h3>
+                <div class="tags" aria-label="Tecnologias">
+                  <span class="tag">Java</span>
+                  <span class="tag">SQL</span>
+                  <span class="tag">Git</span>
+                </div>
+              </div>
+              <p class="muted">
+                CRUD com validações, organização por camadas e banco de dados relacional. Substitua este texto pela descrição do
+                seu projeto.
+              </p>
+              <div class="project__links">
+                <a class="linkbtn" href="#" aria-label="Abrir repositório (adicione o link)">Repositório</a>
+                <a class="linkbtn" href="#" aria-label="Abrir demonstração (adicione o link)">Demo</a>
+              </div>
+            </article>
+
+            <article class="card project">
+              <div class="project__top">
+                <h3 class="card__title">Projeto 02 · Site responsivo</h3>
+                <div class="tags" aria-label="Tecnologias">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+              </div>
+              <p class="muted">
+                Landing page com foco em UX, acessibilidade e performance. Substitua este texto pela descrição do seu projeto.
+              </p>
+              <div class="project__links">
+                <a class="linkbtn" href="#" aria-label="Abrir repositório (adicione o link)">Repositório</a>
+                <a class="linkbtn" href="#" aria-label="Abrir demonstração (adicione o link)">Demo</a>
+              </div>
+            </article>
+
+            <article class="card project">
+              <div class="project__top">
+                <h3 class="card__title">Projeto 03 · Automação/IA (LLM)</h3>
+                <div class="tags" aria-label="Tecnologias">
+                  <span class="tag">Python</span>
+                  <span class="tag">LLM</span>
+                  <span class="tag">Dados</span>
+                </div>
+              </div>
+              <p class="muted">
+                Experimento com prompts e automação para apoiar estudos e organização de informação. Substitua este texto pela
+                descrição do seu projeto.
+              </p>
+              <div class="project__links">
+                <a class="linkbtn" href="#" aria-label="Abrir repositório (adicione o link)">Repositório</a>
+                <a class="linkbtn" href="#" aria-label="Abrir demonstração (adicione o link)">Demo</a>
+              </div>
+            </article>
+
+            <article class="card project">
+              <div class="project__top">
+                <h3 class="card__title">Projeto 04 · Banco de dados</h3>
+                <div class="tags" aria-label="Tecnologias">
+                  <span class="tag">SQL</span>
+                  <span class="tag">Modelagem</span>
+                  <span class="tag">Relacional</span>
+                </div>
+              </div>
+              <p class="muted">
+                Modelagem e consultas para resolver um problema real (estoque, escola, atendimento, etc.). Substitua este texto
+                pela descrição do seu projeto.
+              </p>
+              <div class="project__links">
+                <a class="linkbtn" href="#" aria-label="Abrir repositório (adicione o link)">Repositório</a>
+                <a class="linkbtn" href="#" aria-label="Abrir documentação (adicione o link)">Docs</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="certificados" aria-label="Certificados">
+        <div class="wrap">
+          <header class="section__head section__head--inline">
+            <div>
+              <h2 class="section__title">Certificados</h2>
+              <p class="section__subtitle">Sessão dedicada apenas a certificados.</p>
+            </div>
+          </header>
+
+          <div class="grid2">
+            <article class="card cert">
+              <div class="cert__top">
+                <h3 class="card__title">Certificado · Nome do curso</h3>
+                <span class="badge">2026</span>
+              </div>
+              <p class="muted">Instituição/Plataforma · Carga horária (opcional)</p>
+              <a class="linkbtn" href="#" aria-label="Link do certificado (adicione o link)">Abrir certificado</a>
+            </article>
+            <article class="card cert">
+              <div class="cert__top">
+                <h3 class="card__title">Certificado · Nome do curso</h3>
+                <span class="badge">2025</span>
+              </div>
+              <p class="muted">Instituição/Plataforma · Carga horária (opcional)</p>
+              <a class="linkbtn" href="#" aria-label="Link do certificado (adicione o link)">Abrir certificado</a>
+            </article>
+            <article class="card cert">
+              <div class="cert__top">
+                <h3 class="card__title">Certificado · Nome do curso</h3>
+                <span class="badge">2025</span>
+              </div>
+              <p class="muted">Instituição/Plataforma · Carga horária (opcional)</p>
+              <a class="linkbtn" href="#" aria-label="Link do certificado (adicione o link)">Abrir certificado</a>
+            </article>
+            <article class="card cert">
+              <div class="cert__top">
+                <h3 class="card__title">Certificado · Nome do curso</h3>
+                <span class="badge">2024</span>
+              </div>
+              <p class="muted">Instituição/Plataforma · Carga horária (opcional)</p>
+              <a class="linkbtn" href="#" aria-label="Link do certificado (adicione o link)">Abrir certificado</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contato" aria-label="Contato">
+        <div class="wrap">
+          <header class="section__head">
+            <h2 class="section__title">Contato</h2>
+            <p class="section__subtitle">Vamos conversar sobre oportunidades e projetos.</p>
+          </header>
+
+          <div class="grid2">
+            <div class="card">
+              <h3 class="card__title">Canais</h3>
+              <ul class="contact">
+                <li class="contact__item">
+                  <span class="contact__k">E-mail</span>
+                  <a class="contact__v" href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a>
+                </li>
+                <li class="contact__item">
+                  <span class="contact__k">GitHub</span>
+                  <a class="contact__v" href="#" aria-label="Link do GitHub (adicione o link)">github.com/seuusuario</a>
+                </li>
+                <li class="contact__item">
+                  <span class="contact__k">LinkedIn</span>
+                  <a class="contact__v" href="#" aria-label="Link do LinkedIn (adicione o link)">linkedin.com/in/seuperfil</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="card__title">Disponibilidade</h3>
+              <p class="muted">
+                Aberta a estágios, projetos e oportunidades para aprender e contribuir. Se quiser, eu adapto este portfólio para a
+                vaga/empresa.
+              </p>
+              <div class="note">
+                <span class="note__dot" aria-hidden="true"></span>
+                <span>Atualize os links e o seu nome para publicar.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="Rodapé">
+      <div class="wrap footer__inner">
+        <span>© <span id="year"></span> Seu Nome</span>
+        <a class="footer__link" href="#home">Voltar ao topo</a>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <div class="toast__content">
+        <div class="toast__title" id="toastTitle">Tudo certo</div>
+        <div class="toast__msg" id="toastMsg"></div>
+      </div>
+      <button class="toast__close" type="button" id="toastClose" aria-label="Fechar">
+        Fechar
+      </button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
