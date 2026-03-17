@@ -694,6 +694,13 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   outline: none;
   box-shadow: var(--ring);
 }
+.linkbtn[aria-disabled="true"] {
+  opacity: 0.68;
+  cursor: not-allowed;
+  filter: none;
+  border-color: var(--stroke);
+  background: rgba(255, 255, 255, 0.04);
+}
 
 .cert__top {
   display: flex;
