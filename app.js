@@ -7,6 +7,20 @@ function qsa(selector, root = document) {
 }
 
 let toastTimeout = 0;
+let lastFocusEl = null;
+let lastOverflow = "";
+
+function setPageScrollLocked(locked) {
+  const body = document.body;
+  if (!body) return;
+
+  if (locked) {
+    lastOverflow = body.style.overflow || "";
+    body.style.overflow = "hidden";
+  } else {
+    body.style.overflow = lastOverflow;
+  }
+}
 
 function hideToast() {
   const root = qs("#toast");
@@ -67,6 +81,71 @@ function bindToastClose() {
     },
     true,
   );
+}
+
+function openLightboxFromImg(img) {
+  const root = qs("#lightbox");
+  const imgEl = qs("#lightboxImg");
+  const caption = qs("#lightboxCaption");
+  const closeBtn = qs("#lightboxClose");
+  if (!root || !imgEl || !caption || !closeBtn) return;
+
+  const src = img.currentSrc || img.getAttribute("src") || "";
+  if (!src) return;
+
+  lastFocusEl = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+  imgEl.src = src;
+  imgEl.alt = img.getAttribute("alt") || "Imagem ampliada";
+  caption.textContent = img.getAttribute("data-caption") || imgEl.alt || "";
+
+  root.removeAttribute("hidden");
+  root.setAttribute("data-open", "true");
+  setPageScrollLocked(true);
+
+  closeBtn.focus();
+}
+
+function closeLightbox() {
+  const root = qs("#lightbox");
+  const imgEl = qs("#lightboxImg");
+  const caption = qs("#lightboxCaption");
+  if (!root || !imgEl || !caption) return;
+
+  root.setAttribute("hidden", "");
+  root.removeAttribute("data-open");
+  setPageScrollLocked(false);
+
+  imgEl.removeAttribute("src");
+  imgEl.alt = "";
+  caption.textContent = "";
+
+  if (lastFocusEl) lastFocusEl.focus();
+  lastFocusEl = null;
+}
+
+function bindLightbox() {
+  document.addEventListener("click", (e) => {
+    const close = e.target.closest("[data-lightbox-close], #lightboxClose");
+    if (close) {
+      e.preventDefault();
+      closeLightbox();
+      return;
+    }
+
+    const img = e.target.closest("img[data-lightbox]");
+    if (!img) return;
+
+    e.preventDefault();
+    openLightboxFromImg(img);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const root = qs("#lightbox");
+    if (!root || root.hasAttribute("hidden")) return;
+    closeLightbox();
+  });
 }
 
 const THEMES = new Set(["azul", "lilas", "preto", "vermelho"]);
@@ -256,6 +335,7 @@ function main() {
   bindNav();
   bindActiveSection();
   bindToastClose();
+  bindLightbox();
   bindAvatarPhoto();
   bindCopyEmail();
   bindProjectFilters();

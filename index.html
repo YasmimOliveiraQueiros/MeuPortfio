@@ -87,6 +87,8 @@
                   alt="Foto de Yasmim Oliveira Queiros"
                   loading="lazy"
                   decoding="async"
+                  data-lightbox
+                  data-caption="Yasmim Oliveira Queiros"
                 />
                 <span class="avatar__initials" aria-hidden="true">YQ</span>
               </div>
@@ -449,6 +451,15 @@
       <button class="toast__close" type="button" id="toastClose" aria-label="Fechar">
         Fechar
       </button>
+    </div>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem" hidden>
+      <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Fechar imagem">Fechar</button>
+      <div class="lightbox__backdrop" data-lightbox-close aria-hidden="true"></div>
+      <figure class="lightbox__panel" role="document">
+        <img class="lightbox__img" id="lightboxImg" alt="" />
+        <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
+      </figure>
     </div>
 
     <script src="app.js"></script>
