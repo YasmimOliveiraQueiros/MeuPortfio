@@ -9,6 +9,8 @@
       name="description"
       content="Portfólio responsivo de técnica em informática: sobre, habilidades, projetos e certificados."
     />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link rel="apple-touch-icon" href="assets/logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,7 +19,9 @@
     <header class="topbar" aria-label="Barra superior">
       <div class="wrap topbar__inner">
         <a class="brand" href="#home" aria-label="Ir para o início">
-          <span class="brand__logo" aria-hidden="true"></span>
+          <span class="brand__logo" aria-hidden="true">
+            <img class="brand__logoImg" src="assets/logo.png" alt="" decoding="async" />
+          </span>
           <span class="brand__text">
             <span class="brand__title">Yasmim Oliveira Queiros</span>
             <span class="brand__sub">Técnica em Informática · Dev Front-end/Back-end</span>
@@ -384,7 +388,12 @@
             </div>
 
             <div class="card">
-              <h3 class="card__title">Disponibilidade</h3>
+              <h3 class="card__title card__title--icon">
+                <span class="card__titleIcon" aria-hidden="true">
+                  <img class="card__titleIconImg" src="assets/logo.png" alt="" decoding="async" />
+                </span>
+                Disponibilidade
+              </h3>
               <p class="muted">
                 Aberta a estágios, projetos e oportunidades para aprender e contribuir.
               </p>
