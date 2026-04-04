@@ -446,13 +446,149 @@ function runIntro() {
   }
 
   const skipBtn = qs("#introSkip");
+  const canvas = qs("#introCanvas");
   let done = false;
   let timer = 0;
+  let raf = 0;
+  let resizeTimer = 0;
+  let particles = [];
+  let ctx = null;
+  let start = 0;
+
+  const getColor = (name, fallback) => {
+    try {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v || fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const setupCanvas = () => {
+    if (!(canvas instanceof HTMLCanvasElement)) return false;
+    const c = canvas;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const rect = c.getBoundingClientRect();
+    const w = Math.max(1, Math.round(rect.width * dpr));
+    const h = Math.max(1, Math.round(rect.height * dpr));
+    if (c.width !== w) c.width = w;
+    if (c.height !== h) c.height = h;
+    ctx = c.getContext("2d");
+    if (!ctx) return false;
+
+    const count = Math.round(Math.min(120, Math.max(70, (rect.width * rect.height) / 14000)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+      r: 0.7 + Math.random() * 1.8,
+    }));
+    return true;
+  };
+
+  const draw = (t) => {
+    if (done || !ctx || !(canvas instanceof HTMLCanvasElement)) return;
+    if (!start) start = t;
+
+    const elapsed = (t - start) / 1000;
+    const c = canvas;
+    const w = c.width;
+    const h = c.height;
+    const cx = w * 0.5;
+    const cy = h * 0.46;
+
+    const accent = getColor("--accent", "rgba(59,130,246,1)");
+    const accent2 = getColor("--accent2", "rgba(56,189,248,1)");
+
+    ctx.clearRect(0, 0, w, h);
+
+    // Soft vignette to keep focus on card
+    const vignette = ctx.createRadialGradient(cx, cy, 40, cx, cy, Math.max(w, h) * 0.62);
+    vignette.addColorStop(0, "rgba(0,0,0,0)");
+    vignette.addColorStop(1, "rgba(0,0,0,0.35)");
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, w, h);
+
+    const orbit = 0.6 + Math.sin(elapsed * 0.9) * 0.08;
+    const pull = 0.0025;
+    const maxDist = Math.min(w, h) * 0.14;
+
+    // Update particles
+    for (const p of particles) {
+      const dx = cx - p.x;
+      const dy = cy - p.y;
+      p.vx += dx * pull;
+      p.vy += dy * pull;
+
+      // gentle swirl
+      const sw = 0.0006;
+      p.vx += -dy * sw * orbit;
+      p.vy += dx * sw * orbit;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // bounds
+      if (p.x < -20) p.x = w + 20;
+      if (p.x > w + 20) p.x = -20;
+      if (p.y < -20) p.y = h + 20;
+      if (p.y > h + 20) p.y = -20;
+    }
+
+    // Lines
+    ctx.lineWidth = 1;
+    for (let i = 0; i < particles.length; i++) {
+      const a = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const d = Math.hypot(dx, dy);
+        if (d > maxDist) continue;
+        const alpha = (1 - d / maxDist) * 0.22;
+        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    // Accent arcs
+    const r0 = Math.min(w, h) * 0.14;
+    ctx.globalAlpha = 0.5;
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = Math.max(2, Math.min(5, w * 0.0028));
+    ctx.beginPath();
+    ctx.arc(cx, cy, r0, elapsed * 0.9, elapsed * 0.9 + 1.8);
+    ctx.stroke();
+
+    ctx.strokeStyle = accent2;
+    ctx.globalAlpha = 0.35;
+    ctx.lineWidth = Math.max(2, Math.min(4, w * 0.0022));
+    ctx.beginPath();
+    ctx.arc(cx, cy, r0 * 1.22, -elapsed * 0.75, -elapsed * 0.75 + 1.4);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // Dots
+    for (const p of particles) {
+      ctx.fillStyle = "rgba(255,255,255,0.55)";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    raf = window.requestAnimationFrame(draw);
+  };
 
   const finish = () => {
     if (done) return;
     done = true;
     if (timer) window.clearTimeout(timer);
+    if (raf) window.cancelAnimationFrame(raf);
+    if (resizeTimer) window.clearTimeout(resizeTimer);
     root.setAttribute("data-state", "closing");
     setPageScrollLocked(false);
 
@@ -461,6 +597,7 @@ function runIntro() {
     }, 420);
 
     document.removeEventListener("keydown", onKeydown, true);
+    window.removeEventListener("resize", onResize);
   };
 
   const onKeydown = (e) => {
@@ -468,6 +605,16 @@ function runIntro() {
       e.preventDefault();
       finish();
     }
+  };
+
+  const onResize = () => {
+    if (done) return;
+    if (resizeTimer) window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      if (setupCanvas()) {
+        if (!raf) raf = window.requestAnimationFrame(draw);
+      }
+    }, 80);
   };
 
   root.addEventListener("click", (e) => {
@@ -480,13 +627,16 @@ function runIntro() {
 
   setPageScrollLocked(true);
   document.addEventListener("keydown", onKeydown, true);
+  window.addEventListener("resize", onResize);
+
+  if (setupCanvas()) raf = window.requestAnimationFrame(draw);
 
   window.requestAnimationFrame(() => {
     if (root.getAttribute("data-state") !== "open") root.setAttribute("data-state", "open");
     if (skipBtn) skipBtn.focus();
   });
 
-  timer = window.setTimeout(finish, 1900);
+  timer = window.setTimeout(finish, 2550);
 }
 
 function bindContactForm() {
