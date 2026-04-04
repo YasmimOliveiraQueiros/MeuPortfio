@@ -431,6 +431,64 @@ function buildGmailComposeUrl({ to, cc, subject, body }) {
   return `https://mail.google.com/mail/?${params.toString()}`;
 }
 
+function runIntro() {
+  const root = qs("#intro");
+  if (!root) return;
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion) {
+    root.remove();
+    return;
+  }
+
+  const skipBtn = qs("#introSkip");
+  let done = false;
+  let timer = 0;
+
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (timer) window.clearTimeout(timer);
+    root.setAttribute("data-state", "closing");
+    setPageScrollLocked(false);
+
+    window.setTimeout(() => {
+      root.remove();
+    }, 420);
+
+    document.removeEventListener("keydown", onKeydown, true);
+  };
+
+  const onKeydown = (e) => {
+    if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      finish();
+    }
+  };
+
+  root.addEventListener("click", (e) => {
+    const skip = e.target.closest("#introSkip");
+    if (skip) return;
+    finish();
+  });
+
+  if (skipBtn) skipBtn.addEventListener("click", finish);
+
+  setPageScrollLocked(true);
+  document.addEventListener("keydown", onKeydown, true);
+
+  window.requestAnimationFrame(() => {
+    if (root.getAttribute("data-state") !== "open") root.setAttribute("data-state", "open");
+    if (skipBtn) skipBtn.focus();
+  });
+
+  timer = window.setTimeout(finish, 1900);
+}
+
 function bindContactForm() {
   const form = qs("#contactForm");
   if (!form) return;
@@ -487,6 +545,7 @@ function setYear() {
 
 function main() {
   restoreTheme();
+  runIntro();
   bindTheme();
   bindNav();
   bindActiveSection();
