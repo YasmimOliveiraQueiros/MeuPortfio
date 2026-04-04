@@ -123,17 +123,18 @@ function trapFocus(e) {
 function openLightboxFromImg(img) {
   const root = qs("#lightbox");
   const imgEl = qs("#lightboxImg");
+  const frameWrap = qs("#lightboxFrameWrap");
   const frameEl = qs("#lightboxFrame");
   const caption = qs("#lightboxCaption");
   const closeBtn = qs("#lightboxClose");
-  if (!root || !imgEl || !frameEl || !caption || !closeBtn) return;
+  if (!root || !imgEl || !frameWrap || !frameEl || !caption || !closeBtn) return;
 
   const src = img.currentSrc || img.getAttribute("src") || "";
   if (!src) return;
 
   lastFocusEl = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
-  frameEl.setAttribute("hidden", "");
+  frameWrap.setAttribute("hidden", "");
   frameEl.removeAttribute("src");
   frameEl.title = "";
 
@@ -154,10 +155,11 @@ function openLightboxFromImg(img) {
 function openLightboxPdf(url, captionText) {
   const root = qs("#lightbox");
   const imgEl = qs("#lightboxImg");
+  const frameWrap = qs("#lightboxFrameWrap");
   const frameEl = qs("#lightboxFrame");
   const caption = qs("#lightboxCaption");
   const closeBtn = qs("#lightboxClose");
-  if (!root || !imgEl || !frameEl || !caption || !closeBtn) return;
+  if (!root || !imgEl || !frameWrap || !frameEl || !caption || !closeBtn) return;
 
   const src = String(url || "").trim();
   if (!src) return;
@@ -168,7 +170,7 @@ function openLightboxPdf(url, captionText) {
   imgEl.removeAttribute("src");
   imgEl.alt = "";
 
-  frameEl.removeAttribute("hidden");
+  frameWrap.removeAttribute("hidden");
   frameEl.src = src;
   frameEl.title = captionText || "Certificado (PDF)";
 
@@ -186,9 +188,10 @@ function openLightboxPdf(url, captionText) {
 function closeLightbox() {
   const root = qs("#lightbox");
   const imgEl = qs("#lightboxImg");
+  const frameWrap = qs("#lightboxFrameWrap");
   const frameEl = qs("#lightboxFrame");
   const caption = qs("#lightboxCaption");
-  if (!root || !imgEl || !frameEl || !caption) return;
+  if (!root || !imgEl || !frameWrap || !frameEl || !caption) return;
 
   root.setAttribute("hidden", "");
   root.removeAttribute("data-open");
@@ -200,7 +203,7 @@ function closeLightbox() {
   imgEl.alt = "";
   imgEl.setAttribute("hidden", "");
 
-  frameEl.setAttribute("hidden", "");
+  frameWrap.setAttribute("hidden", "");
   frameEl.removeAttribute("src");
   frameEl.title = "";
   caption.textContent = "";
