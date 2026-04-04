@@ -309,7 +309,7 @@
                   data-caption="UANE · Fábrica de Programadores"
                   aria-label="Ampliar certificado"
                 >
-                  Ampliar
+                  <span class="cert__thumbText">Clique para ampliar</span>
                 </button>
               </div>
             </article>
@@ -334,7 +334,7 @@
                   data-caption="Huawei ICT Academy · HCCDA - Tech Essentials Course"
                   aria-label="Ampliar certificado"
                 >
-                  Ampliar
+                  <span class="cert__thumbText">Clique para ampliar</span>
                 </button>
               </div>
             </article>
@@ -359,7 +359,7 @@
                   data-caption="Huawei · HCCDA - Tech Essentials Course (Redes)"
                   aria-label="Ampliar certificado"
                 >
-                  Ampliar
+                  <span class="cert__thumbText">Clique para ampliar</span>
                 </button>
               </div>
             </article>
@@ -384,7 +384,7 @@
                   data-caption="CLM · Certificado de Inglês"
                   aria-label="Ampliar certificado"
                 >
-                  Ampliar
+                  <span class="cert__thumbText">Clique para ampliar</span>
                 </button>
               </div>
             </article>
@@ -459,7 +459,9 @@
       <div class="lightbox__backdrop" data-lightbox-close aria-hidden="true"></div>
       <figure class="lightbox__panel" role="document" tabindex="-1">
         <img class="lightbox__img" id="lightboxImg" alt="" />
-        <iframe class="lightbox__frame" id="lightboxFrame" title="" hidden></iframe>
+        <div class="lightbox__frameWrap" id="lightboxFrameWrap" hidden>
+          <iframe class="lightbox__frame" id="lightboxFrame" title=""></iframe>
+        </div>
         <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
       </figure>
     </div>
