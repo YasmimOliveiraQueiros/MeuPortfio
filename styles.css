@@ -343,6 +343,17 @@ a {
   outline: none;
   box-shadow: var(--ring);
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .btn--primary {
   border-color: var(--accent-border);
   background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -566,18 +577,9 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
 .certcard__body {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   padding: 14px 16px 16px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.18));
-}
-.certcard__icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 14px;
-  border: 1px solid var(--accent-border);
-  background: radial-gradient(30px 24px at 35% 35%, var(--accent2), var(--accent));
-  box-shadow: 0 16px 40px var(--accent-glow);
-  flex: 0 0 auto;
 }
 .certcard__text {
   min-width: 0;
@@ -872,6 +874,7 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
+  cursor: zoom-in;
 }
 .cert__thumb {
   --pdf-toolbar: 54px;
@@ -890,8 +893,8 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   inset: 0;
   border: 0;
   background: transparent;
-  opacity: 0;
-  transition: opacity 160ms ease, transform 160ms ease;
+  opacity: 0.001;
+  transition: none;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -899,41 +902,10 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   color: var(--text);
   font-weight: 850;
   cursor: zoom-in;
-  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
-}
-.cert__thumbOverlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.50));
-  opacity: 0;
-  pointer-events: none;
-}
-.cert__thumbWrap:hover .cert__thumbOverlay {
-  opacity: 1;
-}
-.cert__thumbWrap:hover .cert__thumbOverlay::before {
-  opacity: 0.7;
-}
-.certcard__cta {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.40);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-  font-size: 12.5px;
 }
 .cert__thumbOverlay:focus-visible {
-  opacity: 1;
   outline: none;
   box-shadow: var(--ring);
-}
-.cert__thumbOverlay:focus-visible::before {
-  opacity: 0.7;
 }
 
 .badge {
