@@ -868,7 +868,7 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
 
 .cert__thumbWrap {
   position: relative;
-  height: 210px;
+  height: clamp(260px, 32vw, 380px);
   margin-top: 0;
   border-radius: 18px 18px 0 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
@@ -877,9 +877,10 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   cursor: zoom-in;
 }
 .cert__thumb {
-  --pdf-toolbar: 54px;
-  --pdf-left-cut: 172px;
-  --pdf-right-cut: 32px;
+  --pdf-toolbar: 0px;
+  --pdf-left-cut: 0px;
+  --pdf-right-cut: 0px;
+  --pdf-scale: 1;
   position: absolute;
   inset: 0;
   top: calc(-1 * var(--pdf-toolbar));
@@ -890,7 +891,14 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   display: block;
   background: transparent;
   pointer-events: none;
+  transform: scale(var(--pdf-scale));
+  transform-origin: top center;
 }
+
+.certcard--uane .cert__thumb { --pdf-scale: 1; }
+.certcard--huawei-cloud .cert__thumb { --pdf-scale: 1; }
+.certcard--huawei-redes .cert__thumb { --pdf-scale: 1; }
+.certcard--clm .cert__thumb { --pdf-scale: 1; }
 .cert__thumbOverlay {
   position: absolute;
   inset: 0;
@@ -1125,8 +1133,8 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
 }
 .lightbox__frame {
   --pdf-toolbar: 54px;
-  --pdf-left-cut: 172px;
-  --pdf-right-cut: 32px;
+  --pdf-left-cut: 0px;
+  --pdf-right-cut: 0px;
   position: absolute;
   inset: 0;
   top: calc(-1 * var(--pdf-toolbar));
@@ -1232,17 +1240,17 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
     height: 72px;
   }
   .cert__thumbWrap {
-    height: 180px;
+    height: 220px;
   }
   .cert__thumb {
     --pdf-toolbar: 48px;
-    --pdf-left-cut: 160px;
-    --pdf-right-cut: 28px;
+    --pdf-left-cut: 0px;
+    --pdf-right-cut: 0px;
   }
   .lightbox__frame {
     --pdf-toolbar: 48px;
-    --pdf-left-cut: 160px;
-    --pdf-right-cut: 28px;
+    --pdf-left-cut: 0px;
+    --pdf-right-cut: 0px;
   }
   .contactform__grid {
     grid-template-columns: 1fr;
