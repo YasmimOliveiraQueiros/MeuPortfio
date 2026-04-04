@@ -846,6 +846,57 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   border-radius: 10px;
 }
 
+.contactform {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+.contactform__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+}
+.label {
+  color: var(--muted);
+  font-weight: 760;
+  font-size: 12.5px;
+}
+.input,
+.textarea {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 12px 12px;
+  font-family: var(--font);
+  font-size: 14px;
+  outline: none;
+}
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.input:focus,
+.textarea:focus {
+  box-shadow: var(--ring);
+  border-color: var(--accent-border);
+}
+.hint {
+  color: var(--faint);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.contactform__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .footer {
   padding: 22px 0 30px;
   border-top: 1px solid var(--topbar-border);
@@ -1070,6 +1121,9 @@ html[data-theme="vermelho"] .swatch[data-theme="vermelho"] {
   }
   .lightbox__frame {
     --pdf-toolbar: 48px;
+  }
+  .contactform__grid {
+    grid-template-columns: 1fr;
   }
   .section {
     padding: 44px 0;

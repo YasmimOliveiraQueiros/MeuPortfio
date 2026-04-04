@@ -432,6 +432,58 @@
               <p class="muted">
                 Aberta a estágios, projetos e oportunidades para aprender e contribuir.
               </p>
+
+              <form class="contactform" id="contactForm" novalidate>
+                <div class="contactform__grid">
+                  <div class="field">
+                    <label class="label" for="cfName">Seu nome</label>
+                    <input class="input" id="cfName" name="name" type="text" autocomplete="name" required />
+                  </div>
+
+                  <div class="field">
+                    <label class="label" for="cfEmail">Seu e-mail</label>
+                    <input class="input" id="cfEmail" name="email" type="email" autocomplete="email" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="cfSubject">Assunto</label>
+                  <input
+                    class="input"
+                    id="cfSubject"
+                    name="subject"
+                    type="text"
+                    maxlength="120"
+                    placeholder="Ex.: Estágio em TI"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label class="label" for="cfMessage">Mensagem</label>
+                  <textarea
+                    class="textarea"
+                    id="cfMessage"
+                    name="message"
+                    rows="5"
+                    maxlength="1200"
+                    placeholder="Conte um pouco sobre a vaga/projeto e como posso ajudar."
+                    required
+                  ></textarea>
+                  <div class="hint">Ao enviar, o Gmail abre com a mensagem pronta (para mim e com cópia para você).</div>
+                </div>
+
+                <div class="contactform__actions">
+                  <button class="btn btn--primary" type="submit">Enviar mensagem</button>
+                  <button class="btn btn--ghost" type="reset">Limpar</button>
+                </div>
+
+                <noscript>
+                  <p class="hint">
+                    Ative o JavaScript para enviar pelo formulário, ou use o e-mail nos canais ao lado.
+                  </p>
+                </noscript>
+              </form>
             </div>
           </div>
         </div>

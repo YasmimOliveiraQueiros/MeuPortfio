@@ -419,6 +419,67 @@ function bindAvatarPhoto() {
   img.addEventListener("error", clear);
 }
 
+function buildGmailComposeUrl({ to, cc, subject, body }) {
+  const params = new URLSearchParams();
+  params.set("view", "cm");
+  params.set("fs", "1");
+  params.set("tf", "1");
+  params.set("to", to);
+  if (cc) params.set("cc", cc);
+  if (subject) params.set("su", subject);
+  if (body) params.set("body", body);
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
+function bindContactForm() {
+  const form = qs("#contactForm");
+  if (!form) return;
+
+  const nameEl = qs("#cfName", form);
+  const emailEl = qs("#cfEmail", form);
+  const subjectEl = qs("#cfSubject", form);
+  const messageEl = qs("#cfMessage", form);
+  if (!nameEl || !emailEl || !subjectEl || !messageEl) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = String(nameEl.value || "").trim();
+    const email = String(emailEl.value || "").trim();
+    const subject = String(subjectEl.value || "").trim();
+    const message = String(messageEl.value || "").trim();
+
+    if (!name) {
+      toast("Faltou o nome", "Digite seu nome para enviar a mensagem.");
+      nameEl.focus();
+      return;
+    }
+    if (!email || !email.includes("@")) {
+      toast("E-mail inválido", "Digite um e-mail válido para receber a cópia.");
+      emailEl.focus();
+      return;
+    }
+    if (!subject) {
+      toast("Faltou o assunto", "Digite um assunto para a mensagem.");
+      subjectEl.focus();
+      return;
+    }
+    if (!message) {
+      toast("Faltou a mensagem", "Escreva sua mensagem antes de enviar.");
+      messageEl.focus();
+      return;
+    }
+
+    const to = "yasmim.oliveiraqueiros@gmail.com";
+    const body = `Nome: ${name}\nE-mail: ${email}\n\nMensagem:\n${message}`;
+
+    const url = buildGmailComposeUrl({ to, cc: email, subject, body });
+    const opened = window.open(url, "_blank", "noopener");
+    if (!opened) window.location.assign(url);
+    toast("Abrindo Gmail", "Finalize o envio no Gmail. A mensagem vai para mim e com cópia para você.");
+  });
+}
+
 function setYear() {
   const year = qs("#year");
   if (year) year.textContent = String(new Date().getFullYear());
@@ -433,6 +494,7 @@ function main() {
   bindLightbox();
   bindAvatarPhoto();
   bindCopyEmail();
+  bindContactForm();
   bindProjectFilters();
   setYear();
 }
