@@ -476,13 +476,15 @@ function runIntro() {
     ctx = c.getContext("2d");
     if (!ctx) return false;
 
-    const count = Math.round(Math.min(120, Math.max(70, (rect.width * rect.height) / 14000)));
+    const count = Math.round(Math.min(130, Math.max(80, (rect.width * rect.height) / 14000)));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.55,
-      vy: (Math.random() - 0.5) * 0.55,
-      r: 0.7 + Math.random() * 1.8,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: 0.8 + Math.random() * 1.9,
+      a: 0.32 + Math.random() * 0.55,
+      phase: Math.random() * Math.PI * 2,
     }));
     return true;
   };
@@ -503,16 +505,16 @@ function runIntro() {
 
     ctx.clearRect(0, 0, w, h);
 
-    // Soft vignette to keep focus on card
-    const vignette = ctx.createRadialGradient(cx, cy, 40, cx, cy, Math.max(w, h) * 0.62);
+    // Soft vignette to keep focus near center
+    const vignette = ctx.createRadialGradient(cx, cy, 40, cx, cy, Math.max(w, h) * 0.70);
     vignette.addColorStop(0, "rgba(0,0,0,0)");
-    vignette.addColorStop(1, "rgba(0,0,0,0.35)");
+    vignette.addColorStop(1, "rgba(0,0,0,0.30)");
     ctx.fillStyle = vignette;
     ctx.fillRect(0, 0, w, h);
 
-    const orbit = 0.6 + Math.sin(elapsed * 0.9) * 0.08;
-    const pull = 0.0025;
-    const maxDist = Math.min(w, h) * 0.14;
+    const orbit = 0.58 + Math.sin(elapsed * 0.35) * 0.06;
+    const pull = 0.00115;
+    const maxDist = Math.min(w, h) * 0.16;
 
     // Update particles
     for (const p of particles) {
@@ -522,12 +524,16 @@ function runIntro() {
       p.vy += dy * pull;
 
       // gentle swirl
-      const sw = 0.0006;
+      const sw = 0.00018;
       p.vx += -dy * sw * orbit;
       p.vy += dx * sw * orbit;
 
       p.x += p.vx;
       p.y += p.vy;
+
+      // small damping for slower motion
+      p.vx *= 0.995;
+      p.vy *= 0.995;
 
       // bounds
       if (p.x < -20) p.x = w + 20;
@@ -537,6 +543,8 @@ function runIntro() {
     }
 
     // Lines
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
     ctx.lineWidth = 1;
     for (let i = 0; i < particles.length; i++) {
       const a = particles[i];
@@ -546,39 +554,43 @@ function runIntro() {
         const dy = a.y - b.y;
         const d = Math.hypot(dx, dy);
         if (d > maxDist) continue;
-        const alpha = (1 - d / maxDist) * 0.22;
-        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+        const alpha = (1 - d / maxDist) * 0.20;
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = accent2;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
       }
     }
+    ctx.globalAlpha = 1;
 
     // Accent arcs
     const r0 = Math.min(w, h) * 0.14;
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.45;
     ctx.strokeStyle = accent;
     ctx.lineWidth = Math.max(2, Math.min(5, w * 0.0028));
     ctx.beginPath();
-    ctx.arc(cx, cy, r0, elapsed * 0.9, elapsed * 0.9 + 1.8);
+    ctx.arc(cx, cy, r0, elapsed * 0.22, elapsed * 0.22 + 1.8);
     ctx.stroke();
 
     ctx.strokeStyle = accent2;
-    ctx.globalAlpha = 0.35;
+    ctx.globalAlpha = 0.30;
     ctx.lineWidth = Math.max(2, Math.min(4, w * 0.0022));
     ctx.beginPath();
-    ctx.arc(cx, cy, r0 * 1.22, -elapsed * 0.75, -elapsed * 0.75 + 1.4);
+    ctx.arc(cx, cy, r0 * 1.22, -elapsed * 0.18, -elapsed * 0.18 + 1.4);
     ctx.stroke();
     ctx.globalAlpha = 1;
 
     // Dots
     for (const p of particles) {
-      ctx.fillStyle = "rgba(255,255,255,0.55)";
+      const tw = 0.55 + 0.45 * (Math.sin(elapsed * 0.8 + p.phase) * 0.5 + 0.5);
+      ctx.fillStyle = `rgba(255,255,255,${p.a * tw})`;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
     }
+    ctx.restore();
 
     raf = window.requestAnimationFrame(draw);
   };
@@ -636,7 +648,7 @@ function runIntro() {
     if (skipBtn) skipBtn.focus();
   });
 
-  timer = window.setTimeout(finish, 2550);
+  timer = window.setTimeout(finish, 4800);
 }
 
 function bindContactForm() {
