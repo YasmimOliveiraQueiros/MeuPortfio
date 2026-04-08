@@ -69,15 +69,15 @@
             aria-expanded="false"
             aria-controls="navLinks"
           >
-            Menu
+            <span data-i18n="nav.menu">Menu</span>
           </button>
           <div class="nav__links" id="navLinks">
-            <a class="nav__link" href="#sobre">Sobre</a>
-            <a class="nav__link" href="#habilidades">Habilidades</a>
-            <a class="nav__link" href="#aprendizado">Em aprendizado</a>
-            <a class="nav__link" href="#projetos">Projetos</a>
-            <a class="nav__link" href="#certificados">Certificados</a>
-            <a class="nav__link" href="#contato">Contato</a>
+            <a class="nav__link" href="#sobre" data-i18n="nav.about">Sobre</a>
+            <a class="nav__link" href="#habilidades" data-i18n="nav.skills">Habilidades</a>
+            <a class="nav__link" href="#aprendizado" data-i18n="nav.learning">Em aprendizado</a>
+            <a class="nav__link" href="#projetos" data-i18n="nav.projects">Projetos</a>
+            <a class="nav__link" href="#certificados" data-i18n="nav.certs">Certificados</a>
+            <a class="nav__link" href="#contato" data-i18n="nav.contact">Contato</a>
           </div>
         </nav>
       </div>
@@ -88,30 +88,35 @@
         <div class="wrap hero__grid">
           <div class="hero__copy">
             <div class="kicker">
-              <span class="pill">Ensino Médio Técnico (3º ano)</span>
-              <span class="pill pill--soft">Iniciando carreira em TI</span>
-              <a class="pill pill--link" href="#contato">Disponível para estágio</a>
+              <span class="pill" data-i18n="hero.pill1">Ensino Médio Técnico (3º ano)</span>
+              <span class="pill pill--soft" data-i18n="hero.pill2">Iniciando carreira em TI</span>
+              <a class="pill pill--link" href="#contato" data-i18n="hero.pill3">Disponível para estágio</a>
             </div>
             <h1 class="hero__title">
-              Construo soluções claras, eficientes e com foco em impacto.
+              <span data-i18n="hero.title">Construo soluções claras, eficientes e com foco em impacto.</span>
             </h1>
             <p class="hero__lead">
-              Interesse em desenvolvimento de software, inteligência artificial e banco de dados — sempre buscando entender o
-              “porquê” por trás das soluções.
+              <span data-i18n="hero.lead">Interesse em desenvolvimento de software, inteligência artificial e banco de dados — sempre buscando entender o “porquê” por trás das soluções.</span>
             </p>
 
             <div class="hero__cta">
-              <a class="btn btn--primary" href="#projetos">Ver projetos</a>
-              <a class="btn btn--ghost" href="#contato">Falar comigo</a>
+              <a class="btn btn--primary" href="#projetos" data-i18n="hero.ctaProjects">Ver projetos</a>
+              <a class="btn btn--ghost" href="#contato" data-i18n="hero.ctaContact">Falar comigo</a>
             </div>
 
-            <div class="theme" aria-label="Opções de cores">
-              <div class="theme__label">Cores</div>
-              <div class="theme__swatches" role="list">
-                <button class="swatch" type="button" data-theme="azul" aria-label="Tema azul"></button>
-                <button class="swatch" type="button" data-theme="lilas" aria-label="Tema lilás"></button>
-                <button class="swatch" type="button" data-theme="preto" aria-label="Tema preto"></button>
-                <button class="swatch" type="button" data-theme="vermelho" aria-label="Tema vermelho"></button>
+            <div class="theme" aria-label="Opções de cores e idioma">
+              <div class="theme__label" data-i18n="theme.label">Cores</div>
+              <div class="theme__controls">
+                <div class="theme__swatches" role="list" aria-label="Paleta de cores">
+                  <button class="swatch" type="button" data-theme="azul" aria-label="Tema azul"></button>
+                  <button class="swatch" type="button" data-theme="lilas" aria-label="Tema lilás"></button>
+                  <button class="swatch" type="button" data-theme="preto" aria-label="Tema preto"></button>
+                  <button class="swatch" type="button" data-theme="vermelho" aria-label="Tema vermelho"></button>
+                </div>
+                <div class="lang" role="group" aria-label="Idioma">
+                  <button class="lang__btn" type="button" data-lang="pt" aria-pressed="true">BR</button>
+                  <button class="lang__btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
               </div>
             </div>
           </div>
@@ -149,14 +154,14 @@
             </dl>
 
             <div class="quick">
-              <a class="btn btn--small btn--primary" href="#certificados">Ver certificados</a>
+              <a class="btn btn--small btn--primary" href="#certificados" data-i18n="hero.card.ctaCerts">Ver certificados</a>
                 <button
                   class="btn btn--small btn--ghost"
                   type="button"
                   id="copyEmail"
                   data-email="yasmim.oliveiraqueiros@gmail.com"
                 >
-                  Copiar e-mail
+                  <span data-i18n="hero.card.copyEmail">Copiar e-mail</span>
                 </button>
             </div>
           </aside>
@@ -166,8 +171,8 @@
       <section class="section" id="sobre" aria-label="Sobre mim">
         <div class="wrap">
           <header class="section__head">
-            <h2 class="section__title">Sobre</h2>
-            <p class="section__subtitle">Quem eu sou e como penso.</p>
+            <h2 class="section__title" data-i18n="section.about.title">Sobre</h2>
+            <p class="section__subtitle" data-i18n="section.about.sub">Quem eu sou e como penso.</p>
           </header>
 
           <article class="card aboutcard" aria-label="Quem sou eu">
@@ -245,8 +250,8 @@
         <div class="wrap">
           <header class="section__head section__head--inline">
             <div>
-              <h2 class="section__title">Tecnologias</h2>
-              <p class="section__subtitle">Ferramentas que uso no dia a dia (passe o mouse para destacar).</p>
+              <h2 class="section__title" data-i18n="section.stack.title">Tecnologias</h2>
+              <p class="section__subtitle" data-i18n="section.stack.sub">Ferramentas que uso no dia a dia (passe o mouse para destacar).</p>
             </div>
           </header>
 
@@ -346,8 +351,8 @@
         <div class="wrap">
           <header class="section__head section__head--inline">
             <div>
-              <h2 class="section__title">Habilidades</h2>
-              <p class="section__subtitle">O que eu uso para entregar valor.</p>
+              <h2 class="section__title" data-i18n="section.skills.title">Habilidades</h2>
+              <p class="section__subtitle" data-i18n="section.skills.sub">O que eu uso para entregar valor.</p>
             </div>
           </header>
 
@@ -384,8 +389,8 @@
         <div class="wrap">
           <header class="section__head section__head--inline">
             <div>
-              <h2 class="section__title">Em aprendizado</h2>
-              <p class="section__subtitle">O que estou estudando agora e onde quero evoluir.</p>
+              <h2 class="section__title" data-i18n="section.learning.title">Em aprendizado</h2>
+              <p class="section__subtitle" data-i18n="section.learning.sub">O que estou estudando agora e onde quero evoluir.</p>
             </div>
           </header>
 
@@ -538,11 +543,11 @@
         <div class="wrap">
           <header class="section__head section__head--inline">
             <div>
-              <h2 class="section__title">Projetos</h2>
-              <p class="section__subtitle">Seleção para demonstrar prática e evolução.</p>
+              <h2 class="section__title" data-i18n="section.projects.title">Projetos</h2>
+              <p class="section__subtitle" data-i18n="section.projects.sub">Seleção para demonstrar prática e evolução.</p>
             </div>
             <div class="section__actions">
-              <a class="btn btn--ghost" href="#contato">Quero ver mais</a>
+              <a class="btn btn--ghost" href="#contato" data-i18n="section.projects.more">Quero ver mais</a>
             </div>
           </header>
 
@@ -601,8 +606,8 @@
         <div class="wrap">
           <header class="section__head section__head--inline">
             <div>
-              <h2 class="section__title">Certificados</h2>
-              <p class="section__subtitle">Sessão dedicada apenas a certificados.</p>
+              <h2 class="section__title" data-i18n="section.certs.title">Certificados</h2>
+              <p class="section__subtitle" data-i18n="section.certs.sub">Sessão dedicada apenas a certificados.</p>
             </div>
           </header>
 
@@ -697,8 +702,8 @@
       <section class="section" id="contato" aria-label="Contato">
         <div class="wrap">
           <header class="section__head">
-            <h2 class="section__title">Contato</h2>
-            <p class="section__subtitle">Vamos conversar sobre oportunidades e projetos.</p>
+            <h2 class="section__title" data-i18n="section.contact.title">Contato</h2>
+            <p class="section__subtitle" data-i18n="section.contact.sub">Vamos conversar sobre oportunidades e projetos.</p>
           </header>
 
           <div class="grid2">
