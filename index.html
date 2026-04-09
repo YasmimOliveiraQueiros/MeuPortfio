@@ -144,12 +144,12 @@
 
             <dl class="facts" aria-label="Destaques">
               <div class="facts__item">
-                <dt>Atuação</dt>
-                <dd>Front-end e Back-end</dd>
+                <dt data-i18n="hero.card.role">Atuação</dt>
+                <dd data-i18n="hero.card.roleValue">Front-end e Back-end</dd>
               </div>
               <div class="facts__item">
-                <dt>Foco</dt>
-                <dd>Software · IA · Dados</dd>
+                <dt data-i18n="hero.card.focus">Foco</dt>
+                <dd data-i18n="hero.card.focusValue">Software · IA · Dados</dd>
               </div>
             </dl>
 
@@ -627,8 +627,8 @@
               </div>
               <div class="certcard__body">
                 <div class="certcard__text">
-                  <h3 class="certcard__title">Fábrica de Programadores</h3>
-                  <div class="certcard__meta">UANE · Programação em blocos</div>
+                  <h3 class="certcard__title" data-i18n="certs.uane.title">Fábrica de Programadores</h3>
+                  <div class="certcard__meta" data-i18n="certs.uane.meta">UANE · Programação em blocos</div>
                 </div>
                 <div class="certcard__year" aria-label="Ano">2026</div>
               </div>
@@ -648,8 +648,8 @@
               </div>
               <div class="certcard__body">
                 <div class="certcard__text">
-                  <h3 class="certcard__title">HCCDA - Tech Essentials (Cloud)</h3>
-                  <div class="certcard__meta">Huawei ICT Academy · 21/02/2026</div>
+                  <h3 class="certcard__title" data-i18n="certs.huaweiCloud.title">HCCDA - Tech Essentials (Cloud)</h3>
+                  <div class="certcard__meta" data-i18n="certs.huaweiCloud.meta">Huawei ICT Academy · 21/02/2026</div>
                 </div>
                 <div class="certcard__year" aria-label="Ano">2026</div>
               </div>
@@ -669,8 +669,8 @@
               </div>
               <div class="certcard__body">
                 <div class="certcard__text">
-                  <h3 class="certcard__title">HCCDA - Tech Essentials (Redes)</h3>
-                  <div class="certcard__meta">Huawei · Certificado de redes</div>
+                  <h3 class="certcard__title" data-i18n="certs.huaweiNetworks.title">HCCDA - Tech Essentials (Redes)</h3>
+                  <div class="certcard__meta" data-i18n="certs.huaweiNetworks.meta">Huawei · Certificado de redes</div>
                 </div>
                 <div class="certcard__year" aria-label="Ano">2026</div>
               </div>
@@ -690,8 +690,8 @@
               </div>
               <div class="certcard__body">
                 <div class="certcard__text">
-                  <h3 class="certcard__title">Certificado de Inglês</h3>
-                  <div class="certcard__meta">CLM · 17/03/2026</div>
+                  <h3 class="certcard__title" data-i18n="certs.clm.title">Certificado de Inglês</h3>
+                  <div class="certcard__meta" data-i18n="certs.clm.meta">CLM · 17/03/2026</div>
                 </div>
                 <div class="certcard__year" aria-label="Ano">2026</div>
               </div>
@@ -709,10 +709,10 @@
 
           <div class="grid2">
             <div class="card">
-              <h3 class="card__title">Canais</h3>
+              <h3 class="card__title" data-i18n="contact.channels.title">Canais</h3>
               <ul class="contact">
                 <li class="contact__item">
-                  <span class="contact__k">E-mail</span>
+                  <span class="contact__k" data-i18n="contact.channels.email">E-mail</span>
                   <a
                     class="contact__v"
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=yasmim.oliveiraqueiros@gmail.com"
@@ -735,26 +735,26 @@
             </div>
 
             <div class="card">
-              <h3 class="card__title">Disponibilidade</h3>
-              <p class="muted">
+              <h3 class="card__title" data-i18n="contact.avail.title">Disponibilidade</h3>
+              <p class="muted" data-i18n="contact.avail.lead">
                 Aberta a estágios, projetos e oportunidades para aprender e contribuir.
               </p>
 
               <form class="contactform" id="contactForm" novalidate>
                 <div class="contactform__grid">
                   <div class="field">
-                    <label class="label" for="cfName">Seu nome</label>
+                    <label class="label" for="cfName" data-i18n="contact.form.name">Seu nome</label>
                     <input class="input" id="cfName" name="name" type="text" autocomplete="name" required />
                   </div>
 
                   <div class="field">
-                    <label class="label" for="cfEmail">Seu e-mail</label>
+                    <label class="label" for="cfEmail" data-i18n="contact.form.email">Seu e-mail</label>
                     <input class="input" id="cfEmail" name="email" type="email" autocomplete="email" required />
                   </div>
                 </div>
 
                 <div class="field">
-                  <label class="label" for="cfSubject">Assunto</label>
+                  <label class="label" for="cfSubject" data-i18n="contact.form.subject">Assunto</label>
                   <input
                     class="input"
                     id="cfSubject"
@@ -762,12 +762,13 @@
                     type="text"
                     maxlength="120"
                     placeholder="Ex.: Estágio em TI"
+                    data-i18n-placeholder="contact.form.subjectPh"
                     required
                   />
                 </div>
 
                 <div class="field">
-                  <label class="label" for="cfMessage">Mensagem</label>
+                  <label class="label" for="cfMessage" data-i18n="contact.form.message">Mensagem</label>
                   <textarea
                     class="textarea"
                     id="cfMessage"
@@ -775,19 +776,20 @@
                     rows="5"
                     maxlength="1200"
                     placeholder="Conte um pouco sobre a vaga/projeto e como posso ajudar."
+                    data-i18n-placeholder="contact.form.messagePh"
                     required
                   ></textarea>
-                  <div class="hint">Ao enviar, o Gmail abre com a mensagem pronta (para mim e com cópia para você).</div>
+                  <div class="hint" data-i18n="contact.form.hint">Ao enviar, o Gmail abre com a mensagem pronta (para mim e com cópia para você).</div>
                 </div>
 
                 <div class="contactform__actions">
-                  <button class="btn btn--primary" type="submit">Enviar mensagem</button>
-                  <button class="btn btn--ghost" type="reset">Limpar</button>
+                  <button class="btn btn--primary" type="submit" data-i18n="contact.form.send">Enviar mensagem</button>
+                  <button class="btn btn--ghost" type="reset" data-i18n="contact.form.reset">Limpar</button>
                 </div>
 
                 <noscript>
                   <p class="hint">
-                    Ative o JavaScript para enviar pelo formulário, ou use o e-mail nos canais ao lado.
+                    <span data-i18n="contact.form.noscript">Ative o JavaScript para enviar pelo formulário, ou use o e-mail nos canais ao lado.</span>
                   </p>
                 </noscript>
               </form>
@@ -800,22 +802,22 @@
     <footer class="footer" aria-label="Rodapé">
       <div class="wrap footer__inner">
         <span>© <span id="year"></span> Yasmim Oliveira Queiros</span>
-        <a class="footer__link" href="#home">Voltar ao topo</a>
+        <a class="footer__link" href="#home" data-i18n="footer.top">Voltar ao topo</a>
       </div>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>
       <div class="toast__content">
-        <div class="toast__title" id="toastTitle">Tudo certo</div>
+        <div class="toast__title" id="toastTitle" data-i18n="toast.ok">Tudo certo</div>
         <div class="toast__msg" id="toastMsg"></div>
       </div>
-      <button class="toast__close" type="button" id="toastClose" aria-label="Fechar">
-        Fechar
+      <button class="toast__close" type="button" id="toastClose" aria-label="Fechar" data-i18n-aria="toast.closeAria">
+        <span data-i18n="toast.close">Fechar</span>
       </button>
     </div>
 
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar certificado" hidden>
-      <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Fechar imagem">Fechar</button>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar certificado" hidden data-i18n-aria="lightbox.aria">
+      <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Fechar imagem" data-i18n-aria="lightbox.closeAria"><span data-i18n="lightbox.close">Fechar</span></button>
       <div class="lightbox__backdrop" data-lightbox-close aria-hidden="true"></div>
       <figure class="lightbox__panel" role="document" tabindex="-1">
         <img class="lightbox__img" id="lightboxImg" alt="" />
