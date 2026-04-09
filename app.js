@@ -272,6 +272,10 @@ const I18N = {
     "theme.label": "Cores",
     "hero.card.ctaCerts": "Ver certificados",
     "hero.card.copyEmail": "Copiar e-mail",
+    "hero.card.role": "Atuação",
+    "hero.card.roleValue": "Front-end e Back-end",
+    "hero.card.focus": "Foco",
+    "hero.card.focusValue": "Software · IA · Dados",
     "about.title": "Quem sou eu",
     "about.kv.name": "Nome",
     "about.kv.course": "Curso",
@@ -339,10 +343,47 @@ const I18N = {
     "section.projects.title": "Projetos",
     "section.projects.sub": "Seleção para demonstrar prática e evolução.",
     "section.projects.more": "Quero ver mais",
+    "projects.filter.all": "Todos",
+    "projects.repo": "Repositório",
+    "projects.web": "Ver na web",
+    "projects.p1.title": "PaginaLogin · Login e cadastro",
+    "projects.p1.desc": "Página de login e cadastro, com foco em interface clara e organização do front-end.",
+    "projects.p2.title": "Meu Portfólio",
+    "projects.p2.desc":
+      "Meu portfólio pessoal: layout responsivo, sessões bem organizadas (sobre, projetos e certificados), temas de cor e interações com JavaScript.",
     "section.certs.title": "Certificados",
     "section.certs.sub": "Sessão dedicada apenas a certificados.",
+    "certs.uane.title": "Fábrica de Programadores",
+    "certs.uane.meta": "UANE · Programação em blocos",
+    "certs.huaweiCloud.title": "HCCDA - Tech Essentials (Cloud)",
+    "certs.huaweiCloud.meta": "Huawei ICT Academy · 21/02/2026",
+    "certs.huaweiNetworks.title": "HCCDA - Tech Essentials (Redes)",
+    "certs.huaweiNetworks.meta": "Huawei · Certificado de redes",
+    "certs.clm.title": "Certificado de Inglês",
+    "certs.clm.meta": "CLM · 17/03/2026",
     "section.contact.title": "Contato",
     "section.contact.sub": "Vamos conversar sobre oportunidades e projetos.",
+    "footer.top": "Voltar ao topo",
+    "toast.ok": "Tudo certo",
+    "toast.close": "Fechar",
+    "toast.closeAria": "Fechar",
+    "lightbox.aria": "Visualizar imagem",
+    "lightbox.close": "Fechar",
+    "lightbox.closeAria": "Fechar imagem",
+    "contact.channels.title": "Canais",
+    "contact.channels.email": "E-mail",
+    "contact.avail.title": "Disponibilidade",
+    "contact.avail.lead": "Aberta a estágios, projetos e oportunidades para aprender e contribuir.",
+    "contact.form.name": "Seu nome",
+    "contact.form.email": "Seu e-mail",
+    "contact.form.subject": "Assunto",
+    "contact.form.subjectPh": "Ex.: Estágio em TI",
+    "contact.form.message": "Mensagem",
+    "contact.form.messagePh": "Conte um pouco sobre a vaga/projeto e como posso ajudar.",
+    "contact.form.hint": "Ao enviar, o Gmail abre com a mensagem pronta (para mim e com cópia para você).",
+    "contact.form.send": "Enviar mensagem",
+    "contact.form.reset": "Limpar",
+    "contact.form.noscript": "Ative o JavaScript para enviar pelo formulário, ou use o e-mail nos canais ao lado.",
   },
   en: {
     "meta.title": "Portfolio · IT Student",
@@ -369,6 +410,10 @@ const I18N = {
     "theme.label": "Colors",
     "hero.card.ctaCerts": "View certificates",
     "hero.card.copyEmail": "Copy email",
+    "hero.card.role": "Role",
+    "hero.card.roleValue": "Front-end & Back-end",
+    "hero.card.focus": "Focus",
+    "hero.card.focusValue": "Software · AI · Data",
     "about.title": "About me",
     "about.kv.name": "Name",
     "about.kv.course": "Course",
@@ -436,16 +481,63 @@ const I18N = {
     "section.projects.title": "Projects",
     "section.projects.sub": "A selection to show hands-on practice and growth.",
     "section.projects.more": "See more",
+    "projects.filter.all": "All",
+    "projects.repo": "Repository",
+    "projects.web": "Live",
+    "projects.p1.title": "PaginaLogin · Login & sign-up",
+    "projects.p1.desc": "Login and sign-up page focused on a clear interface and front-end organization.",
+    "projects.p2.title": "My Portfolio",
+    "projects.p2.desc":
+      "My personal portfolio: responsive layout, well-organized sections (about, projects and certificates), color themes, and JavaScript interactions.",
     "section.certs.title": "Certificates",
     "section.certs.sub": "A section dedicated to certificates.",
+    "certs.uane.title": "Programmers Factory",
+    "certs.uane.meta": "UANE · Block-based programming",
+    "certs.huaweiCloud.title": "HCCDA - Tech Essentials (Cloud)",
+    "certs.huaweiCloud.meta": "Huawei ICT Academy · 2026-02-21",
+    "certs.huaweiNetworks.title": "HCCDA - Tech Essentials (Networks)",
+    "certs.huaweiNetworks.meta": "Huawei · Networking certificate",
+    "certs.clm.title": "English Certificate",
+    "certs.clm.meta": "CLM · 2026-03-17",
     "section.contact.title": "Contact",
     "section.contact.sub": "Let’s talk about opportunities and projects.",
+    "footer.top": "Back to top",
+    "toast.ok": "All set",
+    "toast.close": "Close",
+    "toast.closeAria": "Close",
+    "lightbox.aria": "View image",
+    "lightbox.close": "Close",
+    "lightbox.closeAria": "Close image",
+    "contact.channels.title": "Channels",
+    "contact.channels.email": "Email",
+    "contact.avail.title": "Availability",
+    "contact.avail.lead": "Open to internships, projects, and opportunities to learn and contribute.",
+    "contact.form.name": "Your name",
+    "contact.form.email": "Your email",
+    "contact.form.subject": "Subject",
+    "contact.form.subjectPh": "e.g., Internship opportunity",
+    "contact.form.message": "Message",
+    "contact.form.messagePh": "Tell me about the role/project and how I can help.",
+    "contact.form.hint": "When you submit, Gmail opens with the message ready (to me and CC’d to you).",
+    "contact.form.send": "Send message",
+    "contact.form.reset": "Clear",
+    "contact.form.noscript": "Enable JavaScript to send via the form, or use the email in the channels next to it.",
   },
 };
 
 function t(key, lang) {
   const safeLang = LANGS.has(lang) ? lang : "pt";
   return (I18N[safeLang] && I18N[safeLang][key]) || (I18N.pt && I18N.pt[key]) || "";
+}
+
+function getCurrentLang() {
+  const v = String(document.documentElement.getAttribute("data-lang") || "").trim();
+  return LANGS.has(v) ? v : "pt";
+}
+
+function toastI18n(titleKey, msgKey) {
+  const lang = getCurrentLang();
+  toast(t(titleKey, lang) || titleKey, t(msgKey, lang) || msgKey);
 }
 
 function applyI18n(lang) {
@@ -459,6 +551,22 @@ function applyI18n(lang) {
     if (!key) return;
     const value = t(key, safeLang);
     if (value) el.textContent = value;
+  });
+
+  qsa("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (!key) return;
+    const value = t(key, safeLang);
+    if (!value) return;
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) el.placeholder = value;
+    else el.setAttribute("placeholder", value);
+  });
+
+  qsa("[data-i18n-aria]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria");
+    if (!key) return;
+    const value = t(key, safeLang);
+    if (value) el.setAttribute("aria-label", value);
   });
 
   // Title & meta description
