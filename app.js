@@ -246,6 +246,31 @@ function bindLightbox() {
 const THEMES = new Set(["azul", "lilas", "preto", "vermelho"]);
 const LANGS = new Set(["pt", "en"]);
 
+const GITHUB_USER = "YasmimOliveiraQueiros";
+const FEATURED_REPOS = ["PaginaLogin", "MeuPortfio"];
+const PROJECT_LIVE_OVERRIDES = {
+  PaginaLogin: "https://pagina-login-umber.vercel.app",
+};
+
+const PROJECT_I18N_OVERRIDES = {
+  PaginaLogin: {
+    title: { pt: "PaginaLogin · Login e cadastro", en: "PaginaLogin · Login & sign-up" },
+    desc: {
+      pt: "Página de login e cadastro, com foco em interface clara e organização do front-end.",
+      en: "Login and sign-up page focused on a clear interface and front-end organization.",
+    },
+    tags: ["HTML", "CSS", "JavaScript"],
+  },
+  MeuPortfio: {
+    title: { pt: "Meu Portfólio", en: "My Portfolio" },
+    desc: {
+      pt: "Meu portfólio pessoal: layout responsivo, sessões bem organizadas (sobre, projetos e certificados), temas de cor e interações com JavaScript.",
+      en: "My personal portfolio: responsive layout, well-organized sections (about, projects and certificates), color themes, and JavaScript interactions.",
+    },
+    tags: ["HTML", "CSS", "JavaScript"],
+  },
+};
+
 const I18N = {
   pt: {
     "meta.title": "Portfólio · Técnica em Informática",
@@ -718,6 +743,8 @@ function applyI18n(lang) {
   qsa(".lang__btn[data-lang]").forEach((btn) => {
     btn.setAttribute("aria-pressed", String(btn.getAttribute("data-lang") === safeLang));
   });
+
+  applyProjectsI18n(safeLang);
 }
 
 function setLang(lang) {
@@ -752,6 +779,184 @@ function bindLang() {
     if (!btn) return;
     setLang(btn.getAttribute("data-lang"));
   });
+}
+
+function getProjectLiveUrl(repo) {
+  const byOverride = PROJECT_LIVE_OVERRIDES[repo.name];
+  if (byOverride) return byOverride;
+
+  const homepage = String(repo.homepage || "").trim();
+  if (homepage) return homepage.startsWith("http") ? homepage : `https://${homepage}`;
+
+  if (repo.has_pages) return `https://${GITHUB_USER}.github.io/${repo.name}/`;
+  return "";
+}
+
+function getProjectText(repo, lang) {
+  const o = PROJECT_I18N_OVERRIDES[repo.name];
+  const title = (o && o.title && o.title[lang]) || repo.name;
+  const desc = (o && o.desc && o.desc[lang]) || String(repo.description || "").trim();
+  const tags = (o && o.tags) || (repo.language ? [repo.language] : []);
+  return { title, desc, tags };
+}
+
+function applyProjectsI18n(lang) {
+  const grid = qs("[data-projects-grid]");
+  if (!grid) return;
+
+  qsa(".project[data-repo]", grid).forEach((card) => {
+    const title = card.getAttribute(lang === "en" ? "data-title-en" : "data-title-pt") || "";
+    const desc = card.getAttribute(lang === "en" ? "data-desc-en" : "data-desc-pt") || "";
+    const titleEl = qs(".card__title", card);
+    const descEl = qs(".muted", card);
+    if (titleEl && title) titleEl.textContent = title;
+    if (descEl && desc) descEl.textContent = desc;
+
+    qsa("[data-role='repo']", card).forEach((el) => (el.textContent = t("projects.repo", lang) || "Repository"));
+    qsa("[data-role='web']", card).forEach((el) => (el.textContent = t("projects.web", lang) || "View on web"));
+  });
+}
+
+async function fetchGithubRepos() {
+  // small cache to avoid rate limits on refresh
+  try {
+    const raw = window.localStorage.getItem("github-repos-cache");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const ts = Number(parsed && parsed.ts);
+      const repos = parsed && parsed.repos;
+      if (ts && Array.isArray(repos) && Date.now() - ts < 6 * 60 * 60 * 1000) return repos;
+    }
+  } catch {
+    // ignore cache errors
+  }
+
+  const url = `https://api.github.com/users/${encodeURIComponent(GITHUB_USER)}/repos?per_page=100&sort=updated`;
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/vnd.github+json",
+    },
+  });
+  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  const data = await res.json();
+  try {
+    if (Array.isArray(data)) window.localStorage.setItem("github-repos-cache", JSON.stringify({ ts: Date.now(), repos: data }));
+  } catch {
+    // ignore
+  }
+  return data;
+}
+
+function renderProjectsFromRepos(repos) {
+  const grid = qs("[data-projects-grid]");
+  if (!grid) return;
+
+  const lang = getCurrentLang();
+
+  const clean = repos.filter((r) => r && !r.fork && !r.archived);
+  const byName = new Map(clean.map((r) => [r.name, r]));
+  const chosen = [];
+
+  for (const name of FEATURED_REPOS) {
+    const r = byName.get(name);
+    if (r) chosen.push(r);
+  }
+
+  const sorted = [...clean].sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")));
+  for (const r of sorted) {
+    if (chosen.length >= 6) break;
+    if (chosen.some((x) => x.name === r.name)) continue;
+    chosen.push(r);
+  }
+
+  if (!chosen.length) return;
+
+  grid.innerHTML = "";
+
+  for (const repo of chosen) {
+    const textPt = getProjectText(repo, "pt");
+    const textEn = getProjectText(repo, "en");
+    const liveUrl = getProjectLiveUrl(repo);
+
+    const card = document.createElement("article");
+    card.className = "card project";
+    card.setAttribute("data-repo", repo.name);
+    card.setAttribute("data-kind", "all");
+    card.setAttribute("data-title-pt", textPt.title);
+    card.setAttribute("data-title-en", textEn.title);
+    card.setAttribute("data-desc-pt", textPt.desc);
+    card.setAttribute("data-desc-en", textEn.desc);
+
+    const top = document.createElement("div");
+    top.className = "project__top";
+
+    const h3 = document.createElement("h3");
+    h3.className = "card__title";
+
+    const tagsWrap = document.createElement("div");
+    tagsWrap.className = "tags";
+    tagsWrap.setAttribute("aria-label", "Tecnologias");
+    tagsWrap.setAttribute("data-i18n-aria", "projects.tags.aria");
+
+    const tags = (lang === "en" ? textEn.tags : textPt.tags).slice(0, 4);
+    for (const tag of tags) {
+      const span = document.createElement("span");
+      span.className = "tag";
+      span.textContent = tag;
+      tagsWrap.appendChild(span);
+    }
+
+    top.appendChild(h3);
+    top.appendChild(tagsWrap);
+
+    const p = document.createElement("p");
+    p.className = "muted";
+
+    const links = document.createElement("div");
+    links.className = "project__links";
+
+    const repoA = document.createElement("a");
+    repoA.className = "linkbtn";
+    repoA.href = repo.html_url;
+    repoA.setAttribute("data-role", "repo");
+    repoA.setAttribute("aria-label", lang === "en" ? `Open ${repo.name} repository on GitHub` : `Abrir repositório ${repo.name} no GitHub`);
+
+    links.appendChild(repoA);
+
+    if (liveUrl) {
+      const webA = document.createElement("a");
+      webA.className = "linkbtn";
+      webA.href = liveUrl;
+      webA.target = "_blank";
+      webA.rel = "noopener noreferrer";
+      webA.setAttribute("data-role", "web");
+      webA.setAttribute("aria-label", lang === "en" ? `Open ${repo.name} on the web` : `Abrir ${repo.name} na web`);
+      links.appendChild(webA);
+    }
+
+    card.appendChild(top);
+    card.appendChild(p);
+    card.appendChild(links);
+
+    grid.appendChild(card);
+  }
+
+  // Apply i18n for the current language after render
+  applyProjectsI18n(lang);
+  // Apply aria translations for newly created elements
+  applyI18n(lang);
+}
+
+async function updateProjectsFromGithub() {
+  const grid = qs("[data-projects-grid]");
+  if (!grid) return;
+
+  try {
+    const repos = await fetchGithubRepos();
+    renderProjectsFromRepos(Array.isArray(repos) ? repos : []);
+  } catch {
+    // keep static HTML fallback
+  }
 }
 
 function setTheme(theme) {
@@ -1231,6 +1436,7 @@ function main() {
   restoreTheme();
   restoreLang();
   updateCertCount();
+  updateProjectsFromGithub();
   runIntro();
   bindTheme();
   bindLang();
